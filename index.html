@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="bootstrap-purged.css" />
+    <script src="app.js" defer></script>
+    <!-- fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/1df7e7737b.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>TO DO APP</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="display-4 text-center">
+        <i class="fa fa-clipboard-check text-primary"></i> TO DO APP
+      </h2>
+      <!-- form -->
+      <form class="form-group">
+        <label for="todo"> Add To List</label>
+        <input
+          type="text"
+          name="todo"
+          id="todo"
+          class="form-control"
+          required
+        />
+        <button value="submit" class="btn btn-primary btn-block mt-2">
+          ADD
+        </button>
+      </form>
+      <hr />
+      <!-- form end -->
+      <div class="todo-list"></div>
+    </div>
+  </body>
+</html>
