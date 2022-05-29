@@ -1,3 +1,3 @@
 # todo
 
-Check out the live website [here](git@github.com:rishawraj/todo.git).
+Check out the live website [here](https://rishawraj.github.io/todo/).
