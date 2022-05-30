@@ -8,7 +8,6 @@ class TODOList {
 // UI class
 class UI {
   static displayTask() {
-    // const getTasks = ["do laundry", "go to gym"];
     const tasks = Store.getTasks();
 
     tasks.forEach((task) => UI.addTaskToList(task));
@@ -21,14 +20,14 @@ class UI {
 
     div.innerHTML = `
        <div
-          class="d-flex justify-content-between bg-secondary align-items-center p-2 m-1"
+          class="d-flex justify-content-between  align-items-center p-2 m-1 task-container" 
         >
-          <input type="checkbox" /> <span class="text-capitalize">${task}</span>
-          <button  class="btn btn-danger delete">delete</button>
+          <input type="checkbox" for="text"/> 
+          <label id="text">${task}</label>
+          <button  class="btn btn-danger delete">Delete</button>
         </div>
     `;
     todoList.appendChild(div);
-    // UI.displayTask(task);
   }
 
   static clearField() {
@@ -39,6 +38,15 @@ class UI {
   static removeTask(el) {
     if (el.classList.contains("delete")) {
       el.parentElement.parentElement.remove();
+    }
+  }
+  static completeTask(el) {
+    if (el.classList.contains("task-container")) {
+      console.log(el.firstElementChild);
+      el.firstElementChild.checked = !el.firstElementChild.checked;
+    } else if (el.attributes[0].value == "text") {
+      el.parentElement.firstElementChild.checked =
+        !el.parentElement.firstElementChild.checked;
     }
   }
 }
@@ -60,7 +68,6 @@ class Store {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
   static removeTask(el) {
-    // console.log(el);
     const tasks = Store.getTasks();
 
     tasks.forEach((task, index) => {
@@ -82,7 +89,6 @@ document.querySelector(".form-group").addEventListener("submit", (e) => {
 
   const taskValue = document.querySelector("#todo").value;
   const newTask = new TODOList(taskValue);
-  //   console.log(newTask);
   UI.addTaskToList(newTask.task);
   //   add to local storage
   Store.addTask(taskValue);
@@ -94,15 +100,14 @@ document.querySelector(".form-group").addEventListener("submit", (e) => {
 document.querySelector(".todo-list").addEventListener("click", (e) => {
   UI.removeTask(e.target);
   if (e.target.classList.contains("delete")) {
-    // consse.target.parentElement;
-    // e.target.parentElement.parentElement.classList.add("delete");
-    // console.log(e.target.parentNode.textContent);
     let x = e.target.parentElement.textContent
       .trim()
       .match(/^(?!.*delete).*/)[0];
-    console.log(x);
     Store.removeTask(x);
   }
 });
 
 // complete a task
+document.querySelector(".todo-list").addEventListener("click", (e) => {
+  UI.completeTask(e.target);
+});
