@@ -675,3 +675,17 @@ input[type="checkbox"] {
   background-color: #ccd0d4;
   cursor: pointer;
 }
+#text {
+  text-transform: capitalize;
+  font-size: 20px;
+  font-weight: 600;
+}
+.crossed {
+  text-decoration: line-through;
+  opacity: 50%;
+}
+
+.checked {
+  background-color: #ccd0d4;
+  /* background-color: #0e4781; */
+}

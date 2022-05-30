@@ -40,13 +40,21 @@ class UI {
       el.parentElement.parentElement.remove();
     }
   }
+  // complete task
+  //todo make these changes persist after refresh! add to localstorage
+  //? fetch css rules from local storage??
   static completeTask(el) {
     if (el.classList.contains("task-container")) {
-      console.log(el.firstElementChild);
       el.firstElementChild.checked = !el.firstElementChild.checked;
+
+      el.firstElementChild.nextElementSibling.classList.toggle("crossed");
+      el.classList.toggle("checked");
     } else if (el.attributes[0].value == "text") {
       el.parentElement.firstElementChild.checked =
         !el.parentElement.firstElementChild.checked;
+
+      el.classList.toggle("crossed");
+      el.parentElement.classList.toggle("checked");
     }
   }
 }
@@ -110,4 +118,6 @@ document.querySelector(".todo-list").addEventListener("click", (e) => {
 // complete a task
 document.querySelector(".todo-list").addEventListener("click", (e) => {
   UI.completeTask(e.target);
+  // ? store css rules in loacalstroage
+  // Store.addCSSRules(e.target)
 });
