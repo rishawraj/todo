@@ -48,6 +48,7 @@ class UI {
       el.firstElementChild.checked = !el.firstElementChild.checked;
 
       el.firstElementChild.nextElementSibling.classList.toggle("crossed");
+
       el.classList.toggle("checked");
     } else if (el.attributes[0].value == "text") {
       el.parentElement.firstElementChild.checked =
@@ -55,6 +56,12 @@ class UI {
 
       el.classList.toggle("crossed");
       el.parentElement.classList.toggle("checked");
+    } else if (el.checked === true) {
+      el.parentElement.classList.toggle("checked");
+      el.nextElementSibling.classList.toggle("crossed");
+    } else if (el.checked === false) {
+      el.parentElement.classList.remove("checked");
+      el.nextElementSibling.classList.remove("crossed");
     }
   }
 }
